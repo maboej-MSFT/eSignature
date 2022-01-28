@@ -1,4 +1,4 @@
-Create a simple eSignature solution on Power Apps
+# Create a simple eSignature solution on Power Apps
 
 By Martin Boejstrup, Microsoft 1/28/2022
 
@@ -149,42 +149,42 @@ to sign in as the user. You need a Tenant Administrator to do that.
 19. In Body add:  
     [grant_type=password&client_id=@{variables('ClientID')}&username=@{variables('username')}&password=@{variables('password')}&client_secret=@{variables('ClientSecret')}&resource=https://graph.microsoft.com](mailto:grant_type=password&client_id=@%7bvariables('ClientID')%7d&username=@%7bvariables('username')%7d&password=@%7bvariables('password')%7d&client_secret=@%7bvariables('ClientSecret')%7d&resource=https://graph.microsoft.com)
 
-    ![Graphical user interface, application Description automatically
+20. ![Graphical user interface, application Description automatically
     generated](media/d3b68950216cff6a0b0a7c536258e210.png)
 
-20. Add a new action “Respond to PowerApp or flow”  
+21. Add a new action “Respond to PowerApp or flow”  
     ![Graphical user interface, application Description automatically
     generated](media/de01a884845121f21143ae2b305b29d9.png)
 
-21. Add a text output “Response” and “ok”  
+22. Add a text output “Response” and “ok”  
     ![Graphical user interface, application, Teams Description automatically
     generated](media/d4339c4f09812b4607d9efa6f87655d4.png)
 
-22. Add a parallel branch  
+23. Add a parallel branch  
     ![Graphical user interface, application Description automatically
     generated](media/be50e968f1df216652424aa9e6794d51.png)
 
-23. Add a the action “Respond to PowerApp or flow”  
+24. Add a the action “Respond to PowerApp or flow”  
     ![Graphical user interface, application Description automatically
     generated](media/de01a884845121f21143ae2b305b29d9.png)
 
-24. Add a text output “Response” and “error”  
+25. Add a text output “Response” and “error”  
     ![Graphical user interface, text, application, email Description
     automatically generated](media/4187bc7567d4f1e773522d880090e0f8.png)
 
-25. Open the “Configure run after” on the last action  
+26. Open the “Configure run after” on the last action  
     ![Graphical user interface, text, application Description automatically
     generated](media/534203b747051a56e58b24bbceef3310.png)
 
-26. Add checkmark on “has failed” and “has timed out” and click “Done”  
+27. Add checkmark on “has failed” and “has timed out” and click “Done”  
     ![Graphical user interface, application Description automatically
     generated](media/43bf5fed269367bcecb841098316c754.png)
 
-27. The flow is now ready – the complete flow:  
+28. The flow is now ready – the complete flow:  
     ![Graphical user interface, application, Teams Description automatically
     generated](media/ba9bbb2cf6448d9c20eb0819a4596c87.png)
 
-28. You can now test the flow  
+29. You can now test the flow  
     ![Graphical user interface, application Description automatically
     generated](media/ff064e59a97ba77d4a52c29db815d34e.png)
 
@@ -198,47 +198,37 @@ to sign in as the user. You need a Tenant Administrator to do that.
         ![Graphical user interface, application Description automatically
         generated](media/ae454f99c4200c84a13d0ecefabd5c0d.png)
 
-    3.  Change the name, and these properties:
+    3.  Change the name, and these properties:  
+        Name: txtUsername  
+        Default: ""  
+        HintText: "Enter username"
 
-|   |   |
-|---|---|
-|   |   |
-|   |   |
+    4.  Change the name, and these properties   
+        Name: txtPassword  
+        Default: ""  
+        HintText: "Enter password"  
+        Mode: TextMode.Password
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    5.  Add a Button and update these properties:  
+        Name: brtCheck  
+        Text: "Check user"
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    6.  In the “OnSelect” click “Power Automate”  
+        ![Graphical user interface, application, Word Description automatically
+        generated](media/c6a2c0f45ae73280e0d9c7818eb12b47.png)
 
-|   |   |
-|---|---|
-|   |   |
-|   |   |
-|   |   |
-
-1.  Add a Button and update these properties:
-
-|   |   |
-|---|---|
-|   |   |
-
-1.  In the “OnSelect” click “Power Automate”  
-    ![Graphical user interface, application, Word Description automatically
-    generated](media/c6a2c0f45ae73280e0d9c7818eb12b47.png)
-
-    1.  In the Flow panel select the “eSignature sign in” flow  
+    7.  In the Flow panel select the “eSignature sign in” flow  
         ![Graphical user interface, application Description automatically
         generated](media/b3402e39d7d936b572dd6acf52faa0a6.png)
 
-    2.  Update the “OnSelect” to:
+    8.  Update the “OnSelect” to:  
+        Set(varUsercheck,
+        eSignaturesignin.Run(txtUsername,txtPassword).response)  
+        ![A picture containing application Description automatically
+        generated](media/b351be3a6977225b0e8911eeb9edee5a.png)
 
-~~~~~ Set(varUsercheck, eSignaturesignin.Run(txtUsername,txtPassword).response) 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-1.  Add a “Text label” control and set the “text” to:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ varUsercheck 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    9.  Add a “Text label” control and set the “text” to: varUsercheck  
+        ![Graphical user interface, application Description automatically
+        generated](media/1752593452c2c9b3b0189a4d987e97c5.png)
 
 Now you have a working sample.
