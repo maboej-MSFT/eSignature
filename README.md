@@ -10,7 +10,8 @@ solution.
 
 This solution uses a sign in request as an electronic signature, as a no/low
 code using build-in features.  
-![](media/bc317b765b96eb711115d067ccf7322c.emf)
+![Diagram Description automatically
+generated](media/790f5688ce4c074d76dd442c12b8ca0d.png)
 
 It uses a cloud flow to call Microsoft Graph sign in request with the username
 and password.
@@ -36,7 +37,7 @@ to sign in as the user. You need a Tenant Administrator to do that.
     ![Graphical user interface, application Description automatically
     generated](media/42f16be3bb23416907fbef3a80dcd991.png)
 
-3.  Add a name and and click “Create”  
+3.  Add a name and click “Create”  
     ![Graphical user interface, text, application Description automatically
     generated](media/e01f3fada52534ed9b41dbcdf89bb677.png)
 
@@ -203,7 +204,7 @@ to sign in as the user. You need a Tenant Administrator to do that.
         Default: ""  
         HintText: "Enter username"
 
-    4.  Change the name, and these properties   
+    4.  Change the name, and these properties  
         Name: txtPassword  
         Default: ""  
         HintText: "Enter password"  
